@@ -1,4 +1,6 @@
-package musictrends;
+package MusicTrends;
+
+import static org.junit.Assert.*;
 
 // -------------------------------------------------------------------------
 /**
@@ -8,7 +10,6 @@ package musictrends;
  * @version Oct 8, 2026
  */
 public class SongDataTest
-    extends student.TestCase
 {
     private SongData songDataT;
 
