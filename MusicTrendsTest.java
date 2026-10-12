@@ -46,7 +46,7 @@ public class MusicTrendsTest
  
         thing.createPlaylist(2024);
         assertTrue(data.isValidYear(2024));
-        assertEquals(20, data.getSongsForYear(2024).count());
+        assertEquals(20, data.getSongsForYear(2024).size());
     }
     @Test
     void testCreatePlaylistNotNormal() {
@@ -55,7 +55,7 @@ public class MusicTrendsTest
  
         thing.createPlaylist(1800);
         assertFalse(data.isValidYear(1800));
-        assertEquals(0, data.getSongsForYear(1800).count());
+        assertEquals(0, data.getSongsForYear(1800).size());
     }
     @Test
     void testDisplayPlaylistNormal() {
