@@ -1,4 +1,4 @@
-package musictrends;
+package MusicTrends;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,9 +24,8 @@ public class SongData
     // ~ Constructors ..........................................................
     public SongData()
     {
-        fileName = "data/songs.csv";
+        fileName = "songs.csv";
     }
-
 
     // ~Public Methods ........................................................
 // ----------------------------------------------------------
@@ -53,13 +52,13 @@ public class SongData
                 if (fileYear == year)
                 {
                     String title = parts[2];
-                    String artist = parts[3];
+                    String artistName = parts[3];
                     String genre = parts[4];
 
-                    Artist artist = new Artist(artist);
+                    Artist artist = new Artist(artistName);
                     Song song = new Song(title, artist, genre);
 
-                    playlist.add(song);
+                    playlist.addToEnd(song);
                 }
             }
             reader.close();
@@ -84,8 +83,8 @@ public class SongData
         {
             BufferedReader reader =
                 new BufferedReader(new FileReader(fileName));
-            String line = reader.readLine();
-            while ((line = reader.readLine() != null))
+            String line;
+            while ((line = reader.readLine()) != null)
             {
                 String[] parts = line.split(",");
 
