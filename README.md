@@ -14,6 +14,7 @@ Attribution Table and GenAI:
 | Artist   | Glenn  | Wrote, Revised   |
 | ArtistTest   | Glenn  | Wrote, Revised    |
 | LinkedChain   | Vibha   | Wrote, Revised   |
+| LinkedChainTest   | Vibha   | Wrote, Revised   |
 | MusicTrends   | Glenn   | Wrote, Revised    |
 | Node  | Yug   | Wrote, Revised   |
 | NodeTest | Yug   | Wrote, Revised    |
