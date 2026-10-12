@@ -1,0 +1,13 @@
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Eclipse specific files
+.classpath
+.project
+.settings/
+bin/
