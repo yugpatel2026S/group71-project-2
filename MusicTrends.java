@@ -1,3 +1,5 @@
+package MusicTrends;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,37 +15,39 @@ public class MusicTrends
     public static void main(String [] args) {
         MusicTrends thing = new MusicTrends();
         System.out.println("Welcome to MusicTrends!!");
-        int year = thing.getyearInput();
+        int year = thing.getYearInput();
         thing.createPlaylist(year);
         thing.displayPlaylist();   
     }
     
-    public int getyearInput() {
+    public int getYearInput()
+    {
         int currentYear = 2025;
         int firstYear = 2020;
         
-        while (true) {
+        while (true) 
+        {
             System.out.print("Enter a year from 2020-2025!");
             String input = scanner.nextLine().trim();
             
-            if (input.isEmpty()) {
+            if (input.isEmpty()) 
+            {
                 System.out.println("Your entry cannot be blank. Please enter a valid year.");
-            } continue;
-            try {
+            }
+            else
+            {
                 int year = Integer.parseInt(input);
-                if (year >= firstYear && year <= currentYear) {
+                if (year >= firstYear && year <= currentYear)
+                {
                     return year;
                 }
-                System.out.println("Your year must be within " + firstYear +
-                    " and " + currentYear +
-                    ". (Please input another year again.)");
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a year using numbers only "
-                    + "(do not use letters or symbols).");
+                else
+                {
+                    System.out.println("Your year must be within " + firstYear +
+                        " and " + currentYear + ". (Please input another year again.)");
+                }
             }
-        
         }
-        
     }
     
     public void createPlaylist(int year) {
@@ -55,8 +59,8 @@ public class MusicTrends
             return;
         }
         System.out.println();
-        System.out.println("Top " + playlist.count() + " songs:");
-        for (int i = 0; i < playlist.count(); i++) {
+        System.out.println("Top " + playlist.size() + " songs:");
+        for (int i = 0; i < playlist.size(); i++) {
             System.out.println(playlist.get(i));
         }
         System.out.println();
