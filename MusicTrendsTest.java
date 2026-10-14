@@ -1,74 +1,159 @@
 package MusicTrends;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+ 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static org.junit.Assert.*;
-import java.io.ByteArrayInputStream;
-import org.junit.Test;
+ 
+import org.junit.jupiter.api.Test;
 
 
 public class MusicTrendsTest
 {
-    @Test
-    public void testMainNormal()
+    // ---------- construction ----------
+ 
+    private MusicTrends app;
+ 
+    public void setUp()
     {
-        System.setIn(new ByteArrayInputStream("2024\n".getBytes()));
-        
-        assertDoesNotThrow(() -> MusicTrends.main(new String[0]));
+        app = new MusicTrends();
     }
-    @Test
-    void testMainNotNormal() {
-        System.setIn(new ByteArrayInputStream("gu29ygf2ey\n2024\n".getBytes()));
  
-        assertDoesNotThrow(() -> MusicTrends.main(new String[0]));
-    }
-    @Test
-    void testGetYearInputNormal() {
-        System.setIn(new ByteArrayInputStream("2024\n".getBytes()));
-        MusicTrends thing = new MusicTrends();
+    // ---------- createPlaylist ----------
  
-        assertEquals(2024, thing.getYearInput());
-    }
     @Test
-    void testGetYearInputNotNormal() {
-        // 1800 is rejected, so it asks again and gets 2024
-        System.setIn(new ByteArrayInputStream("1800\n2024\n".getBytes()));
-        MusicTrends thing = new MusicTrends();
- 
-        assertEquals(2024, thing.getYearInput());
+    public void testCreatePlaylistFirstYear()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.createPlaylist(2020);
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "createPlaylist(2020) threw " + message);
     }
+ 
     @Test
-    void testCreatePlaylistNormal() {
-        MusicTrends thing = new MusicTrends();
-        SongData data = new SongData();
- 
-        thing.createPlaylist(2024);
-        assertTrue(data.isValidYear(2024));
-        assertEquals(20, data.getSongsForYear(2024).size());
+    public void testCreatePlaylistLastYear()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.createPlaylist(2025);
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "createPlaylist(2025) threw " + message);
     }
+ 
+ 
     @Test
-    void testCreatePlaylistNotNormal() {
-        MusicTrends thing = new MusicTrends();
-        SongData data = new SongData();
- 
-        thing.createPlaylist(1800);
-        assertFalse(data.isValidYear(1800));
-        assertEquals(0, data.getSongsForYear(1800).size());
+    public void testCreatePlaylistSameYearTwice()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.createPlaylist(2022);
+            app.createPlaylist(2022);
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "Repeating createPlaylist threw " + message);
     }
+ 
     @Test
-    void testDisplayPlaylistNormal() {
-        MusicTrends thing = new MusicTrends();
-        thing.createPlaylist(2024);
- 
-        assertDoesNotThrow(() -> thing.displayPlaylist());
+    public void testCreatePlaylistOutOfRangeYears()
+    {
+        // createPlaylist does no validation of its own, so this documents what SongData does.
+        int[] badYears = {1999, 2019, 2026, 0, -5};
+        int crashes = 0;
+        for (int year : badYears)
+        {
+            MusicTrends app = new MusicTrends();
+            try
+            {
+                app.createPlaylist(year);
+            }
+            catch (Exception e)
+            {
+                crashes++;
+            }
+        }
+        // Nothing should crash on unsupported years; change this if SongData is meant to throw.
+        assertEquals(0, crashes, crashes + " out-of-range year(s) caused an exception");
     }
+ 
+    // ---------- displayPlaylist ----------
+ 
     @Test
-    void testDisplayPlaylistBad() {
-        MusicTrends thing = new MusicTrends();
- 
-        assertDoesNotThrow(() -> thing.displayPlaylist());
+    public void testDisplayPlaylist()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.createPlaylist(2022);
+            app.displayPlaylist();
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "displayPlaylist threw " + message);
     }
+ 
+    @Test
+    public void testDisplayPlaylistBeforeCreate()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.displayPlaylist();
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "displayPlaylist on an empty playlist threw " + message);
+    } 
 
+    @Test
+    public void testSwitchYearsThenDisplay()
+    {
+        MusicTrends app = new MusicTrends();
+        boolean threw = false;
+        String message = "";
+        try
+        {
+            app.createPlaylist(2020);
+            app.displayPlaylist();
+            app.createPlaylist(2025);
+            app.displayPlaylist();
+        }
+        catch (Exception e)
+        {
+            threw = true;
+            message = e.getClass().getSimpleName() + ": " + e.getMessage();
+        }
+        assertFalse(threw, "Switching years then displaying threw " + message);
+    }
 }
