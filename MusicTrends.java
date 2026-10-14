@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MusicTrends
 {
-    private static int playlistSize = 20;
+
     private Scanner scanner = new Scanner(System.in);
     private SongData songData = new SongData();
     private LinkedChain<Song> playlist = new LinkedChain<>();
@@ -34,6 +34,9 @@ public class MusicTrends
             {
                 System.out.println("Your entry cannot be blank. Please enter a valid year.");
             }
+            else if (!input.matches("[0-9]+")){
+                System.out.println("Your input is invalid. Please enter a valid year.");
+            }
             else
             {
                 int year = Integer.parseInt(input);
@@ -46,6 +49,7 @@ public class MusicTrends
                     System.out.println("Your year must be within " + firstYear +
                         " and " + currentYear + ". (Please input another year again.)");
                 }
+                break;
             }
         }
     }
