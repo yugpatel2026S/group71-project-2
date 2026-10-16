@@ -1,4 +1,11 @@
 package MusicTrends;
+// -------------------------------------------------------------------------
+/**
+ *  Gets artist data from csv
+ * 
+ *  @author gphun
+ *  @version Oct 16, 2026
+ */
 public class Artist
 {
     private String name;
@@ -11,10 +18,21 @@ public class Artist
     public Artist(String name) {
         this.name = name;
     }
-    @SuppressWarnings("javadoc")
+    // ----------------------------------------------------------
+    /**
+     * gets artist's name
+     * @return name
+     *              name of artist
+     */
     public String getName() {
         return name;
     }
+    // ----------------------------------------------------------
+    /**
+     * retrieves artist's name
+     * @return name
+     *              name of artist
+     */
     public String toString() {
         return name;
     }
