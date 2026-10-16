@@ -6,17 +6,32 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 
+// -------------------------------------------------------------------------
+/**
+ *  Test MusicTrends Class
+ * 
+ *  @author gphun
+ *  @version Oct 16, 2026
+ */
 public class MusicTrendsTest
 {
     // ---------- construction ----------
  
     private MusicTrends app;
  
+    // ----------------------------------------------------------
+    /**
+     * setUp method
+     */
     public void setUp()
     {
         app = new MusicTrends();
     }
  
+    // ----------------------------------------------------------
+    /**
+     * Test createPlaylist method
+     */
     // ---------- createPlaylist ----------
  
     @Test
@@ -37,6 +52,10 @@ public class MusicTrendsTest
         assertFalse(threw, "createPlaylist(2020) threw " + message);
     }
  
+    // ----------------------------------------------------------
+    /**
+     * Test createPlaylist method
+     */
     @Test
     public void testCreatePlaylistLastYear()
     {
@@ -56,6 +75,10 @@ public class MusicTrendsTest
     }
  
  
+    // ----------------------------------------------------------
+    /**
+     * Test createPlaylist method
+     */
     @Test
     public void testCreatePlaylistSameYearTwice()
     {
@@ -75,6 +98,10 @@ public class MusicTrendsTest
         assertFalse(threw, "Repeating createPlaylist threw " + message);
     }
  
+    // ----------------------------------------------------------
+    /**
+     * Test createPlaylist method
+     */
     @Test
     public void testCreatePlaylistOutOfRangeYears()
     {
@@ -97,6 +124,10 @@ public class MusicTrendsTest
         assertEquals(0, crashes, crashes + " out-of-range year(s) caused an exception");
     }
  
+    // ----------------------------------------------------------
+    /**
+     * Test displayPlaylist method
+     */
     // ---------- displayPlaylist ----------
  
     @Test
@@ -118,6 +149,10 @@ public class MusicTrendsTest
         assertFalse(threw, "displayPlaylist threw " + message);
     }
  
+    // ----------------------------------------------------------
+    /**
+     *  Test displayPlaylist method
+     */
     @Test
     public void testDisplayPlaylistBeforeCreate()
     {
@@ -136,6 +171,10 @@ public class MusicTrendsTest
         assertFalse(threw, "displayPlaylist on an empty playlist threw " + message);
     } 
 
+    // ----------------------------------------------------------
+    /**
+     *  Test displayPlaylist method and 
+     */
     @Test
     public void testSwitchYearsThenDisplay()
     {
