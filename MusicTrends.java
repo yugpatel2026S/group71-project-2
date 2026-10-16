@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+// -------------------------------------------------------------------------
+/**
+ *  Main class of the program
+ *  Uses all other classes
+ * 
+ *  @author gphun
+ *  @version Oct 16, 2026
+ */
 public class MusicTrends
 {
 
@@ -12,6 +20,11 @@ public class MusicTrends
     private LinkedChain<Song> playlist = new LinkedChain<>();
     
     
+    // ----------------------------------------------------------
+    /**
+     * Main method of the MusicTrends class
+     * @param args
+     */
     public static void main(String [] args) {
         MusicTrends thing = new MusicTrends();
         System.out.println("Welcome to MusicTrends!!");
@@ -20,6 +33,12 @@ public class MusicTrends
         thing.displayPlaylist();   
     }
     
+    // ----------------------------------------------------------
+    /**
+     * Checks user's input if it is a valid year, letter, or empty.
+     * @return year
+     *              returns the year
+     */
     public int getYearInput()
     {
         int currentYear = 2025;
@@ -44,19 +63,29 @@ public class MusicTrends
                 {
                     return year;
                 }
-                else
-                {
-                    System.out.println("Your year must be within " + firstYear +
-                        " and " + currentYear + ". (Please input another year again.)");
-                }
-                break;
+                System.out.println("Your year must be within " + firstYear +
+                    " and " + currentYear + ". (Please input another year again.)");
+                
             }
+
+            
+            
+
         }
     }
     
+    // ----------------------------------------------------------
+    /**
+     * creates playlist object
+     * @param year
+     */
     public void createPlaylist(int year) {
         playlist = songData.getSongsForYear(year);
     }
+    // ----------------------------------------------------------
+    /**
+     * Produces and displays a playlist of 20 songs
+     */
     public void displayPlaylist() {
         if (playlist.isEmpty()) {
             System.out.println("The playlist is empty!!");
@@ -69,4 +98,5 @@ public class MusicTrends
         }
         System.out.println();
     }
+ 
 }
